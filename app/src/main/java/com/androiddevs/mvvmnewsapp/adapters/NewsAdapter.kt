@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -38,13 +39,15 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
+
+
         holder.itemView.apply{
             Glide.with(this).load(article.urlToImage).into(ivArticleImage)
             tvSource.text = article.source.name
             tvTitle.text = article.title
             tvDescription.text = article.description
             tvPublishedAt.text = article.publishedAt
-            setOnItemCLickListener {
+            setOnClickListener {
                 onItemClickListener?.let { it(article) }
             }
         }
@@ -58,4 +61,11 @@ class NewsAdapter :RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     fun setOnItemCLickListener(listener: (Article)->Unit){
         onItemClickListener = listener
     }
+
+
+   /* private var onItemClickListener: ((Article) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClickListener = listener
+    }*/
 }
