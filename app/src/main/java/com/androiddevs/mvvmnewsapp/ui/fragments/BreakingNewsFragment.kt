@@ -26,7 +26,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         setupRecyclerView()
 
         newsAdapter.setOnItemCLickListener {
-            Toast.makeText(context,"item CLicked",Toast.LENGTH_SHORT).show()
             val bundle = Bundle().apply {
                 putSerializable("article",it)
             }
