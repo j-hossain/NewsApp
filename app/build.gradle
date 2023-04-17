@@ -77,16 +77,17 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     // Dagger hilt
-    implementation 'com.google.dagger:hilt-android:2.28-alpha'
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    implementation 'com.google.dagger:hilt-android:2.38'
+    kapt "com.google.dagger:hilt-android-compiler:2.38"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
 
     // For instrumentation tests
-    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.28-alpha'
-    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.28-alpha'
+    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.38'
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.38'
 
     // For local unit tests
-    testImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
-    kaptTest 'com.google.dagger:hilt-compiler:2.28-alpha'
+    testImplementation 'com.google.dagger:hilt-android-testing:2.38'
+    kaptTest 'com.google.dagger:hilt-compiler:2.38'
 }
 
 kapt {

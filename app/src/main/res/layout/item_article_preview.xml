@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#37F44336"
+    android:background="#e6eeff"
     android:padding="8dp">
 
     <ImageView
@@ -31,13 +31,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:background="#F44336"
+        android:background="#6666ff"
         android:ellipsize="end"
         android:maxLines="3"
         android:padding="5dp"
         android:text="TITLE"
         android:textColor="@android:color/background_light"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
         app:layout_constraintRight_toRightOf="parent"
@@ -53,6 +53,7 @@
         android:maxLines="5"
         android:text="DESCRIPTION"
         android:textColor="@android:color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivArticleImage"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />

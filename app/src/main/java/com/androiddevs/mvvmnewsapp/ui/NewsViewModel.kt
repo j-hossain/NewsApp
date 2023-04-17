@@ -1,5 +1,6 @@
 package com.androiddevs.mvvmnewsapp.ui
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,11 +8,13 @@ import com.androiddevs.mvvmnewsapp.models.Article
 import com.androiddevs.mvvmnewsapp.models.NewsResponse
 import com.androiddevs.mvvmnewsapp.repository.NewsRepository
 import com.androiddevs.mvvmnewsapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
-
-class NewsViewModel(
-    val newsRepository: NewsRepository
+import javax.inject.Inject
+@HiltViewModel
+class NewsViewModel @Inject constructor (
+    private val newsRepository: NewsRepository
 ) :ViewModel() {
 
     val breakingNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
@@ -21,6 +24,7 @@ class NewsViewModel(
     val searchNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
     var searchNewsResponse:NewsResponse? = null
+    var searchState:Boolean = false
 
     init {
         getBreakingNews("us")
@@ -31,7 +35,8 @@ class NewsViewModel(
         breakingNews.postValue(handleBreakingNewsResponse(response))
     }
 
-    fun searchNews(searchQuery:String) = viewModelScope.launch {
+    fun searchNews(searchQuery:String,state:Boolean) = viewModelScope.launch {
+        searchState = state
         searchNews.postValue(Resource.Loading())
         val response = newsRepository.searchNews(searchQuery,searchNewsPage)
         searchNews.postValue(handleSearchNewsResponse(response))
@@ -60,8 +65,9 @@ class NewsViewModel(
         if(response.isSuccessful){
             response.body()?.let {resultResponse ->
                 searchNewsPage++
-                if(searchNewsResponse==null){
+                if(searchNewsResponse==null || searchState){
                     searchNewsResponse = resultResponse
+                    searchNewsPage = 1
                 }
                 else{
                     val oldArticles = searchNewsResponse?.articles
