@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#e6eeff"
+    android:background="@color/colorPrimaryLight"
     android:padding="8dp">
 
     <ImageView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="SOURCE"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivArticleImage" />
 
@@ -31,7 +31,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:background="#6666ff"
+        android:background="@color/colorPrimary"
         android:ellipsize="end"
         android:maxLines="3"
         android:padding="5dp"
